@@ -1,0 +1,34 @@
+---
+title: "Calificaciones"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Otoño 2015
+
+* Programacion Actuarial        10
+* Intr a la Profesion Actuarial  7
+* DHPC                           9
+* Conceptos de Calculo           8
+* Matematicas Basicas            7
+* Problemas de Mat. Basicas      7
+
+### Primavera 2016
+
+* Programacion Actuarial II     8
+* Teoria del Interes I          8
+* Microeconomia                10
+* Calculo diferencial           5
+* Geometria Analitica           5
+* Teoria de Ecuaciones          7
+
+### Otoño 2016
+
+* Teoria del Interes II        8
+* Macroeconomia               10
+* Formacion Humana y Social    9
+* Lengua Extranjera            9
+* Calculo Diferencial         10
