@@ -1,11 +1,10 @@
-completos<-function(directorio,id){
+completos<-function(directorio,t){
     setwd(directorio)
-    x<-list.files()
-    minimo<-min(id)
-    maximo<-max(id)
-    id<-c()
-    nobs<-c()
-    for(n in minimo:maximo){
+    x <- list.files()
+    id <- c()
+    nobs <- c()
+    
+    for(n in t){
         nombrearchivo<-x[n]
         archivo<-read.csv(nombrearchivo,header = TRUE,sep = ",")
         o <- is.na.data.frame(archivo)
@@ -14,6 +13,7 @@ completos<-function(directorio,id){
         id <- c(id,n)
         nobs <- c(nobs,renglones)
     }    
+    
     final<-cbind(id,nobs)
     final
     class(final)
@@ -21,4 +21,4 @@ completos<-function(directorio,id){
     print(final2)
 }    
 
-completos("C:/Users/omar/Desktop/specdata/specdata",10:100)
+completos("C:/Users/omar/Desktop/specdata/specdata",c(2,4))

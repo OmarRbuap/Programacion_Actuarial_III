@@ -1,4 +1,6 @@
-corr<- function(directorio,horizonte){
+
+
+ corr<- function(directorio,horizonte){
     setwd(directorio)
     x<-list.files()
     corr<-c()
@@ -6,16 +8,13 @@ corr<- function(directorio,horizonte){
         nombrearchivo<-x[n]
         archivo<-read.csv(nombrearchivo,header = TRUE,sep = ",")
         sn<-archivo[,2:3]
-        o<-is.na.data.frame(sn)
-        d<-sn[rowSums(o)==0,]
-        renglones<-nrow(d)
+        o <- is.na.data.frame(sn)
+        d <- sn[rowSums(o)==0,]
+        renglones <- nrow(d)
         
-        if(renglones>horizonte){
+        if(renglones >= horizonte){
             c<-cor(d$sulfate,d$nitrate)
             corr<-c(corr,c)
-        }
-        if(renglones<horizonte){
-            corr<-c(corr,0)
         }
     }
     if(sum(corr)==0){
@@ -23,4 +22,5 @@ corr<- function(directorio,horizonte){
     }
     print(corr)
 }
-corr("C:/Users/omar/Desktop/specdata/specdata",2000)
+corr("C:/Users/omar/Desktop/specdata/specdata",400)
+head(corr("C:/Users/omar/Desktop/specdata/specdata",40))
