@@ -1,0 +1,120 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+Title: "Reconocimiento de Actividad Humana con Celulares"
+date: "08 de Junio de 2017"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+#Benemerita Universidad Autonoma de Puebla
+
+Facultad de Ciencias Físico Matemáticas
+
+Licenciatura Actuaría
+
+Programación Actuarial III
+
+Integrantes: 
+ 
+* Alejandro Arcos Villegas
+* Maria Fernanda Díaz Torres
+* Erick Daniel Espinoza 
+* Omar Rosas Cruz
+
+Codebook: Reconocimiento de Actividad Humana con Celulares
+
+##Información de Juego de Datos:
+
+Los experimentos fueron realizados con un grupo de 30 voluntarios dentro de un rango etario de 19-48 años. Ellos realizaron un protocolo de actividades formadas de seis ejercicios básicos: tres posturas estáticas (parado, sentado, acostado) y tres actividades dinámicas (caminando, bajando escalera y subiendo escalera). El experimento también incluyó transiciones de postura que ocurrieron entre las actividades estáticas. Éstos son: "sentarse", pararse, acostrarse desde la posicion de sentado, acostarse desde la posicion parado, pararse desde la posicion acostado, y sentarse desde la posicion acostado. Todos los participantes llevaban puesto un smartphone (Samsung Galaxy S II) en la cintura durante la ejecución de experimento. Capturamos la aceleración lineal 3 axiales y la velocidad angular 3 axiales en un rango constante de 50 Hz usando el acelerómetro empotrado y el giroscopio del dispositivo. Los experimentos fueron registrados por vídeo para etiquetar los datos a mano. Dataset obtenido fue al azar dividido en dos juegos, donde 70% de los voluntarios fueron seleccionados para generar los datos de formación y 30% los datos de prueba.
+
+Las señales de sensor (acelerómetro y giroscopio) fueron pretratadas aplicando filtros del ruido y luego probadas en la anchura fija que desliza ventanas de 2.56 segundos y 50 traslapo (128 lecturas/ventana). La señal de aceleración de sensor, que tiene gravitacional y componentes de movimiento de cuerpo, fue separada usando un filtro de pase bajo Butterworth en aceleración de cuerpo y gravedad. Se asume que la fuerza gravitacional tiene componentes de frecuencia bajos unicamente, por lo tanto un filtro con la frecuencia de límite de 0.3 Hz fue usado. De cada ventana, un vector de 561 rasgos fue obtenido por variables calculadoras a partir de la esfera de frecuencia y el tiempo.
+
+---
+
+##Función de los atributos
+El dataset es dividido entonces en dos partes y pueden ser usados por separado.
+
+1. Datos de sensor de inercia 
+°Triaxial crudo hace señas del acelerómetro y el giroscopio de todos los procesos con los participantes. 
+°Las etiquetas de todas las actividades realizadas. 
+2. Archivos de ventanas de actividad. Cada uno formado de 
+°Un vector de 561 rasgos con tiempo y variables de esfera de frecuencia. 
+°Su etiqueta de actividad asociada. 
+°Un identificador del sujeto quién realizó el experimento.
+---
+
+##Descripción de las variables
+El archivo clearData.txt contiene la combinación de datos de los archivos train.txt y test.txt, extrayendo la media y desviación estándar de cada actividad y cada sujeto.Donde test.txt y train.txt contiene variabes '-XYZ' que se utilizan para designar señales axiales en las direcciones X, Y y Z.
+
+    Sujeto: Las participantes del muestreo
+    Actividad: Las actividades que fueron evaluadas en los participantes
+    TiempoCuerpoAcc-Media()-X
+    TiempoCuerpoAcc-Media()-Y
+    TiempoCuerpoAcc-Media()-Z
+    TiempoCuerpoAcc-STD()-X
+    TiempoCuerpoAcc-STD()-Y
+    TiempoCuerpoAcc-STD()-Z
+    TiempoGraviTiempoyAcc-Media()-X
+    TiempoGraviTiempoyAcc-Media()-Y
+    TiempoGraviTiempoyAcc-Media()-Z
+    TiempoGraviTiempoyAcc-STD()-X
+    TiempoGraviTiempoyAcc-STD()-Y
+    TiempoGraviTiempoyAcc-STD()-Z
+    TiempoCuerpoAccJerk-Media()-X
+    TiempoCuerpoAccJerk-Media()-Y
+    TiempoCuerpoAccJerk-Media()-Z
+    TiempoCuerpoAccJerk-STD()-X
+    TiempoCuerpoAccJerk-STD()-Y
+    TiempoCuerpoAccJerk-STD()-Z
+    TiempoCuerpoGyro-Media()-X
+    TiempoCuerpoGyro-Media()-Y
+    TiempoCuerpoGyro-Media()-Z
+    TiempoCuerpoGyro-STD()-X
+    TiempoCuerpoGyro-STD()-Y
+    TiempoCuerpoGyro-STD()-Z
+    TiempoCuerpoGyroJerk-Media()-X
+    TiempoCuerpoGyroJerk-Media()-Y
+    TiempoCuerpoGyroJerk-Media()-Z
+    TiempoCuerpoGyroJerk-STD()-X
+    TiempoCuerpoGyroJerk-STD()-Y
+    TiempoCuerpoGyroJerk-STD()-Z
+    TiempoCuerpoAccMag-Media()
+    TiempoCuerpoAccMag-STD()
+    TiempoGraviTiempoyAccMag-Media()
+    TiempoGraviTiempoyAccMag-STD()
+    TiempoCuerpoAccJerkMag-Media()
+    TiempoCuerpoAccJerkMag-STD()
+    TiempoCuerpoGyroMag-Media()
+    TiempoCuerpoGyroMag-STD()
+    TiempoCuerpoGyroJerkMag-Media()
+    TiempoCuerpoGyroJerkMag-STD()
+    FrecuenciaCuerpoAcc-Media()-X
+    FrecuenciaCuerpoAcc-Media()-Y
+    FrecuenciaCuerpoAcc-Media()-Z
+    FrecuenciaCuerpoAcc-STD()-X
+    FrecuenciaCuerpoAcc-STD()-Y 
+    FrecuenciaCuerpoAcc-STD()-Z
+    FrecuenciaCuerpoAccJerk-Media()-X
+    FrecuenciaCuerpoAccJerk-Media()-Y
+    FrecuenciaCuerpoAccJerk-Media()-Z
+    FrecuenciaCuerpoAccJerk-STD()-X
+    FrecuenciaCuerpoAccJerk-STD()-Y
+    FrecuenciaCuerpoAccJerk-STD()-Z
+    FrecuenciaCuerpoGyro-Media()-X
+    FrecuenciaCuerpoGyro-Media()-Y
+    FrecuenciaCuerpoGyro-Media()-Z
+    FrecuenciaCuerpoGyro-STD()-X
+    FrecuenciaCuerpoGyro-STD()-Y
+    FrecuenciaCuerpoGyro-STD()-Z
+    FrecuenciaCuerpoAccMag-Media()
+    FrecuenciaCuerpoAccMag-STD()
+    FrecuenciaCuerpoAccJerkMag-Media()
+    FrecuenciaCuerpoAccJerkMag-STD()
+    FrecuenciaCuerpoGyroMag-Media()
+    FrecuenciaCuerpoGyroMag-STD()
+    FrecuenciaCuerpoGyroJerkMag-Media()
+    FrecuenciaCuerpoGyroJerkMag-STD()

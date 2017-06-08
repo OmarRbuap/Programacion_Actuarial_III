@@ -1,0 +1,64 @@
+---
+title: "README"
+output: html_document
+---
+####Lectura de datos a partir de la carpeta UCI HAR Dataset extraemos las actividades y las 561 caracteristicas 
+
+1. setwd("C:/Users/omar/Desktop/UCI HAR Dataset")
+2. actividades<- as.character(read.table("activity_labels.txt", sep = "")[,2])
+3. features <- as.character(read.table("features.txt", sep = "")[,2])
+
+####Leemos los archivos de la carpeta de train y asignamos el nombre de la actividad correspondiente 
+
+4. setwd("C:/Users/omar/Desktop/UCI HAR Dataset/train")
+5. sujeto1 <- read.table("subject_train.txt", sep = "")
+6. XTrain <- read.table("X_train.txt", sep = "")
+7. YTrain <- read.table("Y_train.txt", sep = "")
+8. YTrain$V1<-as.factor(YTrain$V1)
+9. levels(YTrain$V1)<- actividades
+
+#### Leemos los archivos de la carpeta de test y asignamos el nombre de la actividad correspondiente 
+
+10. setwd("C:/Users/omar/Desktop/UCI HAR Dataset/test")
+11. sujeto2 <- read.table("subject_test.txt", sep = "")
+12. XTest <- read.table("X_test.txt", sep = "")
+13. YTest <- read.table("Y_test.txt", sep = "")
+14. YTest$V1<-as.factor(YTest$V1)
+15. levels(YTest$V1)<- actividades
+
+#### Unimos los datos de test con los de training guardandolo en el Data frame "Datos"
+
+16. train <- cbind.data.frame(sujeto1,YTrain,XTrain)
+17. test <- cbind.data.frame(sujeto2,YTest,XTest)
+18. Datos <- rbind.data.frame(train,test)
+
+#### 3.-Describir los nombres de las actividades en la base de datos.
+
+19. colnames(Datos)<-c("Personas","Actividad",features)
+
+#### 2.-Ordenamos y se extrae unicamente las medias y desviacion estandar de "Datos"
+
+20. Datos <- Datos[order(Datos$`Personas`),]
+
+#### Al revisar el listado de variables, existen mean y meanFreq pero solo queremos los mean, para ello primero eliminamos los meanFreq
+
+21. Datos1 <- grep("meanFreq",colnames(Datos))
+22. Datos <- Datos[,-Datos1]
+
+#### Ahora si se extraen los mean y std
+
+23. Datos2 <- grep("mean",colnames(Datos))
+24. Datos3 <- grep("std",colnames(Datos))
+25. datos4 <- sort(c(1,2,c(Datos2,Datos3)))
+
+#### unimos para tener la base de datos completa
+
+26. Datos <- Datos[,datos4]
+
+####base de datos independiente con el promedio de cada variable para cada actividad y cada sujeto.
+#### http://rpubs.com/joser/dplyr/ liga de referencia
+
+27. library(dplyr)
+28. DatosProm <- Datos %>% group_by(Personas, Actividad) %>% summarise_each(funs(mean))
+29. write.table(DatosProm, row.name = FALSE, file = "Promedio de Datos.txt")
+
